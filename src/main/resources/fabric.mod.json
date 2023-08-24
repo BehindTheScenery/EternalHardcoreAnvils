@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "eternal_hardcore_anvils",
+  "version": "${version}",
+  "name": "Eternal Hardcore Anvils",
+  "description": "",
+  "authors": [],
+  "contact": {
+    "repo": "https://github.com/BehindTheScenery/EternalHardcoreAnvils"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "ru.quantum_emperor.eternal_hardcore_anvils.EternalHardcoreAnvils"
+    ]
+  },
+  "mixins": [
+    "eternal_hardcore_anvils.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
