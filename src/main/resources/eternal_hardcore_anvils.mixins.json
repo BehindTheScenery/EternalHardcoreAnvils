@@ -4,8 +4,10 @@
   "package": "ru.quantum_emperor.eternal_hardcore_anvils.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AnvilScreenHandlerMixin"
   ],
   "client": [
+    "client.AnvilScreenMixin"
   ],
   "injectors": {
     "defaultRequire": 1
