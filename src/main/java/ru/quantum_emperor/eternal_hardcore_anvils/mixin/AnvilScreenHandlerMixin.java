@@ -41,5 +41,19 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
         EHAEnchantment.changeEnchantmentUsage(itemStack2, (short) 1);
     }
 
-
+    @Inject(method = "updateResult", locals = LocalCapture.CAPTURE_FAILSOFT, at = @At(value = "INVOKE_ASSIGN", target = "Ljava/util/Set;iterator()Ljava/util/Iterator;"), cancellable = true)
+    private void cancelAnvil(CallbackInfo ci, ItemStack itemStack, int i, int j, int k, ItemStack itemStack2, ItemStack itemStack3, Map map, boolean bl, Map map2, boolean bl2, boolean bl3) {
+        boolean cond = itemStack.getNbt() != null && itemStack.getNbt().contains(EHAEnchantment.ENCHANTMENT_KEY);
+        short enchantmentUsage = itemStack.getNbt().getShort(EHAEnchantment.ENCHANTMENT_KEY);
+        if (itemStack.isOf(Items.ENCHANTED_BOOK) && cond && enchantmentUsage >= 2) {
+            this.output.setStack(0, ItemStack.EMPTY);
+            this.levelCost.set(0);
+            ci.cancel();
+        }
+        if (itemStack.isDamageable() && itemStack3.isOf(Items.ENCHANTED_BOOK) && cond && enchantmentUsage >= 1) {
+            this.output.setStack(0, ItemStack.EMPTY);
+            this.levelCost.set(0);
+            ci.cancel();
+        }
+    }
 }
