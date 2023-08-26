@@ -13,6 +13,9 @@
   "entrypoints": {
     "main": [
       "ru.quantum_emperor.eternal_hardcore_anvils.EternalHardcoreAnvils"
+    ],
+    "modmenu": [
+      "ru.quantum_emperor.eternal_hardcore_anvils.integration.ModMenuIntegration"
     ]
   },
   "mixins": [

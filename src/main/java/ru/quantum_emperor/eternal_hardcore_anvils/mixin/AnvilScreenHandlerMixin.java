@@ -13,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
+import ru.quantum_emperor.eternal_hardcore_anvils.config.EHAConfig;
 import ru.quantum_emperor.eternal_hardcore_anvils.nbt.EHAEnchantment;
 
 import java.util.Iterator;
@@ -32,7 +33,7 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     @Inject(method = "updateResult", at = @At(value = "INVOKE", target = "Lnet/minecraft/screen/AnvilScreenHandler;sendContentUpdates()V"), locals = LocalCapture.CAPTURE_FAILSOFT)
     private void multiplyResult(CallbackInfo ci, ItemStack itemStack, int i, int j, int k, ItemStack itemStack2) {
         if (!(k == i && k > 0 && this.levelCost.get() >= 40))
-            this.levelCost.set((this.levelCost.get() - k) * 3 + k);
+            this.levelCost.set((this.levelCost.get() - k) * (int) EHAConfig.get().multiplier + k);
     }
 
     @Inject(method = "updateResult", at = @At(value = "INVOKE", target = "Ljava/lang/Math;max(II)I", ordinal = 1),
@@ -45,12 +46,12 @@ public abstract class AnvilScreenHandlerMixin extends ForgingScreenHandler {
     private void cancelAnvil(CallbackInfo ci, ItemStack itemStack, int i, int j, int k, ItemStack itemStack2, ItemStack itemStack3, Map map, boolean bl, Map map2, boolean bl2, boolean bl3) {
         boolean cond = itemStack.getNbt() != null && itemStack.getNbt().contains(EHAEnchantment.ENCHANTMENT_KEY);
         short enchantmentUsage = itemStack.getNbt().getShort(EHAEnchantment.ENCHANTMENT_KEY);
-        if (itemStack.isOf(Items.ENCHANTED_BOOK) && cond && enchantmentUsage >= 2) {
+        if (itemStack.isOf(Items.ENCHANTED_BOOK) && cond && enchantmentUsage >= EHAConfig.get().enchantmentConstraint) {
             this.output.setStack(0, ItemStack.EMPTY);
             this.levelCost.set(0);
             ci.cancel();
         }
-        if (itemStack.isDamageable() && itemStack3.isOf(Items.ENCHANTED_BOOK) && cond && enchantmentUsage >= 1) {
+        if (itemStack.isDamageable() && itemStack3.isOf(Items.ENCHANTED_BOOK) && cond && enchantmentUsage >= EHAConfig.get().enchantmentConstraintForItem) {
             this.output.setStack(0, ItemStack.EMPTY);
             this.levelCost.set(0);
             ci.cancel();
