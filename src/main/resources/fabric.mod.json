@@ -24,6 +24,10 @@
   "depends": {
     "fabricloader": ">=${loader_version}",
     "fabric": "*",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "cloth-config": "8.2.x"
+  },
+  "breaks": {
+    "cloth-config": "<8.2.0"
   }
 }

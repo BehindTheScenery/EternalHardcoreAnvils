@@ -6,20 +6,20 @@ import net.minecraft.nbt.NbtCompound;
 public class EHAEnchantment {
     public static final String ENCHANTMENT_KEY = "EHAEnchantmentsUsage";
 
-    public static void changeEnchantmentUsage(ItemStack stack, short delta) {
+    public static void changeEnchantmentUsage(ItemStack stack, int delta) {
         NbtCompound nbt = stack.getOrCreateNbt();
-        nbt.putShort(ENCHANTMENT_KEY, (short) (getEnchantmentUsage(stack) + delta));
+        nbt.putInt(ENCHANTMENT_KEY, getEnchantmentUsage(stack) + delta);
 
     }
-    public static void setEnchantmentUsage(ItemStack stack, short amount) {
+    public static void setEnchantmentUsage(ItemStack stack, int amount) {
         NbtCompound nbt = stack.getOrCreateNbt();
-        nbt.putShort(ENCHANTMENT_KEY, amount);
+        nbt.putInt(ENCHANTMENT_KEY, amount);
     }
 
-    public static short getEnchantmentUsage(ItemStack stack) {
+    public static int getEnchantmentUsage(ItemStack stack) {
         NbtCompound nbt = stack.getNbt();
         if (nbt != null && nbt.contains(ENCHANTMENT_KEY)) {
-            return nbt.getShort(ENCHANTMENT_KEY);
+            return nbt.getInt(ENCHANTMENT_KEY);
         }
         return 0;
     }
