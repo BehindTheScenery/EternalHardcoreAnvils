@@ -1,0 +1,6 @@
+{
+  "text.autoconfig.eternal_hardcore_anvils.title": "Eternal Hardcore Anvils config",
+  "text.autoconfig.eternal_hardcore_anvils.option.multiplier": "Experience multiplier",
+  "text.autoconfig.eternal_hardcore_anvils.option.enchantmentConstraint": "Enchantment constraint",
+  "text.autoconfig.eternal_hardcore_anvils.option.enchantmentConstraintForItem": "Enchantment constraint for items"
+}

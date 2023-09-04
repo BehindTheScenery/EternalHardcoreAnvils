@@ -1,0 +1,6 @@
+{
+  "text.autoconfig.eternal_hardcore_anvils.title": "Конфигурация Eternal Hardcore Anvils",
+  "text.autoconfig.eternal_hardcore_anvils.option.multiplier": "Множитель опыта",
+  "text.autoconfig.eternal_hardcore_anvils.option.enchantmentConstraint": "Ограничение объединения книг",
+  "text.autoconfig.eternal_hardcore_anvils.option.enchantmentConstraintForItem": "Ограничения наложения книг на предметы"
+}
